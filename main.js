@@ -141,6 +141,8 @@ const cities = {
 
 const homeCity = document.getElementById("homeCity");
 const destinationCity = document.getElementById("destinationCity");
+const homeSuggestions = document.getElementById("homeSuggestions");
+const destinationSuggestions = document.getElementById("destinationSuggestions");
 const homeDate = document.getElementById("homeDate");
 const destinationDate = document.getElementById("destinationDate");
 const homeDateDisplay = document.getElementById("homeDateDisplay");
@@ -327,6 +329,71 @@ function saveSettings() {
 
 
 // --------------------------------
+// CITY AUTOCOMPLETE
+// --------------------------------
+
+function matchingCities(value) {
+    const typed = value.trim().toLowerCase();
+
+    if (!typed) {
+        return [];
+    }
+
+    // Prefix matching only:
+    // "a" shows Amsterdam, Athens, Ankara, etc.
+    // It does not show cities merely because an "a" appears somewhere.
+    return Object.keys(cities)
+        .filter(city => city.toLowerCase().startsWith(typed))
+        .sort((a, b) => a.localeCompare(b));
+}
+
+function closeSuggestions(box) {
+    box.classList.remove("open");
+    box.innerHTML = "";
+}
+
+function showSuggestions(input, box) {
+    const matches = matchingCities(input.value);
+
+    box.innerHTML = "";
+
+    if (matches.length === 0 || normalizeCity(input.value)) {
+        closeSuggestions(box);
+        return;
+    }
+
+    for (const city of matches) {
+        const item = document.createElement("div");
+        item.className = "city-suggestion";
+        item.tabIndex = 0;
+        item.textContent = city;
+
+        const choose = () => {
+            input.value = city;
+            closeSuggestions(box);
+            update();
+            input.focus();
+        };
+
+        item.addEventListener("mousedown", event => {
+            event.preventDefault();
+            choose();
+        });
+
+        item.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                choose();
+            }
+        });
+
+        box.appendChild(item);
+    }
+
+    box.classList.add("open");
+}
+
+// --------------------------------
 // VALIDATION
 // --------------------------------
 
@@ -493,8 +560,15 @@ function updateWhenCityIsValid(event) {
     }
 }
 
-homeCity.addEventListener("input", updateWhenCityIsValid);
-destinationCity.addEventListener("input", updateWhenCityIsValid);
+homeCity.addEventListener("input", event => {
+    updateWhenCityIsValid(event);
+    showSuggestions(homeCity, homeSuggestions);
+});
+
+destinationCity.addEventListener("input", event => {
+    updateWhenCityIsValid(event);
+    showSuggestions(destinationCity, destinationSuggestions);
+});
 
 homeCity.addEventListener("change", update);
 destinationCity.addEventListener("change", update);
@@ -517,3 +591,12 @@ setInterval(update, 60000);
 // --------------------------------
 
 update();
+
+
+homeCity.addEventListener("blur", () => {
+    setTimeout(() => closeSuggestions(homeSuggestions), 100);
+});
+
+destinationCity.addEventListener("blur", () => {
+    setTimeout(() => closeSuggestions(destinationSuggestions), 100);
+});

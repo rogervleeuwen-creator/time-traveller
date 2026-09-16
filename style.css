@@ -349,3 +349,44 @@ footer {
 .calendar-icon {
     margin-left: 8px;
 }
+
+
+/* --------------------------------
+   CITY AUTOCOMPLETE
+-------------------------------- */
+
+.location {
+    position: relative;
+}
+
+.city-suggestions {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    max-height: 240px;
+    overflow-y: auto;
+    text-align: left;
+    background: white;
+    border: 1px solid #ccc;
+    border-top: 0;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+}
+
+.city-suggestions.open {
+    display: block;
+}
+
+.city-suggestion {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.city-suggestion:hover,
+.city-suggestion:focus {
+    background: #f4f5f7;
+    outline: none;
+}
