@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Time-Traveller</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header>
+            <h1>TIME-TRAVELLER</h1>
+            <p>Time travels with you.</p>
+        </header>
+
+        <section class="locations">
+
+            <div class="location home">
+                <div class="icon">🏠</div>
+
+                <input type="text" id="homeCity" list="cityList"
+                       placeholder="Home" autocomplete="off">
+
+                <input type="date" id="homeDate">
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="location destination">
+                <div class="icon">📍</div>
+
+                <input type="text" id="destinationCity" list="cityList"
+                       placeholder="Destination" autocomplete="off">
+
+                <input type="date" id="destinationDate">
+            </div>
+
+            <datalist id="cityList">
+                <option value="Amsterdam">
+                <option value="London">
+                <option value="Paris">
+                <option value="New York">
+                <option value="Tokyo">
+                <option value="Bangkok">
+                <option value="Sydney">
+                <option value="Rome">
+                <option value="Madrid">
+                <option value="Berlin">
+                <option value="Lisbon">
+                <option value="Vienna">
+                <option value="Prague">
+                <option value="Athens">
+                <option value="Dubai">
+                <option value="Singapore">
+                <option value="Hong Kong">
+                <option value="Los Angeles">
+                <option value="Chicago">
+                <option value="Toronto">
+                <option value="Vancouver">
+            </datalist>
+
+        </section>
+
+        <section class="times">
+
+            <div class="time-box">
+                <div class="small-label">🏠 HOME</div>
+                <div class="city-name" id="homeName">Amsterdam</div>
+                <div class="time" id="homeTime">--:--</div>
+            </div>
+
+            <div class="difference" id="timeDifference">-- HOURS</div>
+
+            <div class="time-box">
+                <div class="small-label">📍 DESTINATION</div>
+                <div class="city-name" id="destinationName">Tokyo</div>
+                <div class="time" id="destinationTime">--:--</div>
+            </div>
+
+        </section>
+
+        <section class="timeline">
+
+            <div class="timeline-title">24 HOURS</div>
+
+            <div class="timeline-row">
+                <div class="timeline-label">
+                    🏠 <span id="timelineHomeName">AMSTERDAM</span>
+                </div>
+                <div class="hours" id="homeHours"></div>
+            </div>
+
+            <div class="timeline-row">
+                <div class="timeline-label">
+                    📍 <span id="timelineDestinationName">TOKYO</span>
+                </div>
+                <div class="hours" id="destinationHours"></div>
+            </div>
+
+        </section>
+
+        <section class="call">
+
+            <div class="call-icon">📞</div>
+
+            <div class="call-title">BEST TIME TO CALL HOME</div>
+
+            <div class="call-times">
+                <div>
+                    <strong id="callDestinationTime">18:00</strong>
+                    <span id="callDestinationName">Tokyo</span>
+                </div>
+
+                <div class="call-arrow">→</div>
+
+                <div>
+                    <strong id="callHomeTime">--:--</strong>
+                    <span id="callHomeName">Amsterdam</span>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>Time-Traveller</footer>
+
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>

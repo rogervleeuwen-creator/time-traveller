@@ -1,0 +1,307 @@
+/* --------------------------------
+   BASIC
+-------------------------------- */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f5f7;
+    color: #222;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+
+/* --------------------------------
+   HEADER
+-------------------------------- */
+
+header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 38px;
+    letter-spacing: 3px;
+}
+
+header p {
+    margin-top: 8px;
+    color: #777;
+    font-size: 16px;
+}
+
+
+/* --------------------------------
+   LOCATIONS
+-------------------------------- */
+
+.locations {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.location {
+    width: 300px;
+    text-align: center;
+}
+
+.icon {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+select,
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: white;
+}
+
+input.invalid {
+    border-color: #b00020;
+}
+
+.arrow {
+    font-size: 35px;
+    color: #888;
+}
+
+
+/* --------------------------------
+   TIMES
+-------------------------------- */
+
+.times {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    margin-bottom: 40px;
+}
+
+.time-box {
+    text-align: center;
+    min-width: 220px;
+}
+
+.small-label {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.city-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.time {
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.difference {
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+
+/* --------------------------------
+   TIMELINE
+-------------------------------- */
+
+.timeline {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    margin-bottom: 35px;
+}
+
+.timeline-title {
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.timeline-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.timeline-label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.hours {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    text-align: center;
+}
+
+.hour {
+    padding: 8px 2px;
+    font-size: 12px;
+}
+
+
+/* --------------------------------
+   CALL
+-------------------------------- */
+
+.call {
+    text-align: center;
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+.call-icon {
+    font-size: 35px;
+    margin-bottom: 8px;
+}
+
+.call-title {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.call-times {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    font-size: 18px;
+}
+
+.call-times strong {
+    display: block;
+    font-size: 28px;
+}
+
+.call-times span {
+    color: #777;
+    font-size: 13px;
+}
+
+.call-arrow {
+    font-size: 25px;
+    color: #888;
+}
+
+
+/* --------------------------------
+   FOOTER
+-------------------------------- */
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #999;
+    font-size: 12px;
+}
+
+
+/* --------------------------------
+   MOBILE
+-------------------------------- */
+
+@media (max-width: 700px) {
+
+    .container {
+        padding: 25px 12px;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    .locations {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .location {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .arrow {
+        transform: rotate(90deg);
+        font-size: 25px;
+    }
+
+    .times {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .time-box {
+        min-width: 0;
+    }
+
+    .time {
+        font-size: 36px;
+    }
+
+    .difference {
+        font-size: 17px;
+    }
+
+    .timeline {
+        padding: 15px 10px;
+        overflow-x: visible;
+    }
+
+    .timeline-row {
+        display: block;
+        margin-bottom: 22px;
+    }
+
+    .timeline-label {
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
+    .hours {
+        min-width: 0;
+        grid-template-columns: repeat(12, 1fr);
+        row-gap: 8px;
+    }
+
+    .hour {
+        padding: 5px 0;
+        font-size: 11px;
+    }
+
+    .call-times {
+        gap: 15px;
+    }
+}
