@@ -482,6 +482,20 @@ function update() {
 // EVENTS
 // --------------------------------
 
+function updateWhenCityIsValid(event) {
+    const validCity = normalizeCity(event.target.value);
+
+    // Update immediately when a complete valid city is selected or typed.
+    // Partial text remains untouched while the user is still typing.
+    if (validCity) {
+        event.target.value = validCity;
+        update();
+    }
+}
+
+homeCity.addEventListener("input", updateWhenCityIsValid);
+destinationCity.addEventListener("input", updateWhenCityIsValid);
+
 homeCity.addEventListener("change", update);
 destinationCity.addEventListener("change", update);
 homeDateDisplay.addEventListener("click", () => openDatePicker(homeDate));
