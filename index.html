@@ -27,7 +27,10 @@
                 <input type="text" id="homeCity" list="cityList"
                        placeholder="Home" autocomplete="off">
 
-                <input type="date" id="homeDate">
+                <div class="date-picker">
+        <button type="button" class="date-display" id="homeDateDisplay"><span class="date-text">16 Sep 2026</span><span class="calendar-icon">📅</span></button>
+        <input type="date" id="homeDate" class="native-date">
+    </div>
             </div>
 
             <div class="arrow">→</div>
@@ -38,7 +41,10 @@
                 <input type="text" id="destinationCity" list="cityList"
                        placeholder="Destination" autocomplete="off">
 
-                <input type="date" id="destinationDate">
+                <div class="date-picker">
+        <button type="button" class="date-display" id="destinationDateDisplay"><span class="date-text">16 Sep 2026</span><span class="calendar-icon">📅</span></button>
+        <input type="date" id="destinationDate" class="native-date">
+    </div>
             </div>
 
             <datalist id="cityList">

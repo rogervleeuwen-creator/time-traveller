@@ -35,6 +35,8 @@ const homeCity = document.getElementById("homeCity");
 const destinationCity = document.getElementById("destinationCity");
 const homeDate = document.getElementById("homeDate");
 const destinationDate = document.getElementById("destinationDate");
+const homeDateDisplay = document.getElementById("homeDateDisplay");
+const destinationDateDisplay = document.getElementById("destinationDateDisplay");
 
 const homeName = document.getElementById("homeName");
 const destinationName = document.getElementById("destinationName");
@@ -62,6 +64,33 @@ function localDateString(date = new Date()) {
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
+}
+
+function formatDisplayDate(dateString) {
+    if (!dateString) return "";
+
+    const [year, month, day] = dateString.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+
+    return new Intl.DateTimeFormat("en-GB", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    }).format(date);
+}
+
+function updateDateDisplays() {
+    homeDateDisplay.querySelector(".date-text").textContent = formatDisplayDate(homeDate.value);
+    destinationDateDisplay.querySelector(".date-text").textContent = formatDisplayDate(destinationDate.value);
+}
+
+function openDatePicker(input) {
+    if (typeof input.showPicker === "function") {
+        input.showPicker();
+    } else {
+        input.focus();
+        input.click();
+    }
 }
 
 function normalizeCity(value) {
@@ -268,6 +297,8 @@ function createTimeline(data) {
 // --------------------------------
 
 function update() {
+    updateDateDisplays();
+
     const data = validateCities();
 
     if (!data || !homeDate.value || !destinationDate.value) {
@@ -345,6 +376,9 @@ function update() {
 
 homeCity.addEventListener("change", update);
 destinationCity.addEventListener("change", update);
+homeDateDisplay.addEventListener("click", () => openDatePicker(homeDate));
+destinationDateDisplay.addEventListener("click", () => openDatePicker(destinationDate));
+
 homeDate.addEventListener("change", update);
 destinationDate.addEventListener("change", update);
 
