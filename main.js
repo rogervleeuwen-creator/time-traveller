@@ -600,3 +600,45 @@ homeCity.addEventListener("blur", () => {
 destinationCity.addEventListener("blur", () => {
     setTimeout(() => closeSuggestions(destinationSuggestions), 100);
 });
+
+
+// --------------------------------
+// ADD TO DEVICE
+// --------------------------------
+
+let deferredInstallPrompt = null;
+const installButton = document.getElementById("installButton");
+
+window.addEventListener("beforeinstallprompt", event => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+});
+
+installButton.addEventListener("click", async () => {
+    if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt = null;
+        return;
+    }
+
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+    if (isIOS) {
+        alert("To add Time-Traveller to your Home Screen: tap Share, then choose “Add to Home Screen”.");
+    } else {
+        alert("Use your browser menu and choose “Install app” or “Add to Home screen”.");
+    }
+});
+
+window.addEventListener("appinstalled", () => {
+    deferredInstallPrompt = null;
+    installButton.textContent = "Time-Traveller added ✓";
+    installButton.disabled = true;
+});
+
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js");
+    });
+}
